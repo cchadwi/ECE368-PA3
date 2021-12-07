@@ -2,6 +2,6 @@
 #include <stdlib.h>
 #include <limits.h>
 #include <stdbool.h>
-#include "gridTrav.h"
+#include "pathTrav.h"
 #include "matrix.h"
 #include "minheap.h"

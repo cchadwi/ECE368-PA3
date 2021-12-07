@@ -1,8 +1,8 @@
-#ifndef gridTrav
-#define gridTrav
+#ifndef pathTrav
+#define pathTrav
 #include <stdlib.h>
 
-struct GridTrav
+struct PathTrav
 {
 	struct TraversalNode *head;
 };
@@ -14,7 +14,7 @@ struct TraversalNode
 	struct TraversalNode *next;
 };
 
-struct TraversalNode* newGridNode(int path, int weight)
+struct TraversalNode* newListNode(int path, int weight)
 {
 	struct TraversalNode *newNode = malloc(sizeof(struct TraversalNode));
 	newNode -> path = path;

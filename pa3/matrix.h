@@ -1,16 +1,27 @@
 #ifndef matrix
 #define matrix
-#include "gridTrav.h"
+#include "pathTrav.h"
 #include <stdlib.h>
 
 struct Matrix 
 {
-    int vertex;
-    struct GridTrav* list;
+    int numV;
+    struct PathTrav* list;
 };
 
-struct Matrix* createGraph(int vertex)
+struct Matrix* createGrid(int numV)
 {
-    struct Matrix* m = malloc(sizeof(struct Matrix));
-    
+    struct Matrix* grid = malloc(sizeof(struct Matrix));
+    grid->numV = numV;
+    grid->list = malloc(numV * sizeof(struct PathTrav));
+    int i;
+
+    for(i = 0; i < numV; i++)
+    {
+        grid -> list[i].head = NULL;
+    }
+    return grid;
 };
+
+
+#endif
