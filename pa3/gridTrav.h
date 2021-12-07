@@ -5,14 +5,14 @@
 struct GridTrav
 {
 	struct TraversalNode *head;
-}
+};
 
 struct TraversalNode
 {
 	int path;
 	int weight;
 	struct TraversalNode *next;
-}
+};
 
 struct TraversalNode* newGridNode(int path, int weight)
 {
@@ -21,6 +21,6 @@ struct TraversalNode* newGridNode(int path, int weight)
 	newNode -> weight = weight;
 	newNode -> next = NULL;
 	return(newNode);
-}
+};
 
 #endif
