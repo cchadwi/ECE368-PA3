@@ -28,6 +28,6 @@ void addEdge(struct Matrix* grid, int src, int path, int weight)
     struct TraversalNode* newNode = newListNode(path, weight);
     newNode -> next = grid->list[src].head;
     grid -> list[src].head = newNode;
-}
+};
 
 #endif
