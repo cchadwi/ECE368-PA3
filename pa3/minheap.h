@@ -12,7 +12,7 @@ struct Path* newPath(int vertex, int path)
     struct Path* minHeapNode = (struct Path*)malloc(sizeof(struct Path));
     minHeapNode -> vertex = vertex;
     minHeapNode -> path = path;
-    return(minHeapNode);
+    return minHeapNode;
 };
 
 struct MinHeap

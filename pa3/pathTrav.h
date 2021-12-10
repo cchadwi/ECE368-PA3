@@ -20,7 +20,7 @@ struct TraversalNode* newListNode(int path, int weight)
 	newNode -> path = path;
 	newNode -> weight = weight;
 	newNode -> next = NULL;
-	return(newNode);
+	return newNode;
 };
 
 #endif
