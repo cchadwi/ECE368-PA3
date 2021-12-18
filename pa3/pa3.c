@@ -3,10 +3,10 @@
 #include <limits.h>
 #include <stdbool.h>
 #include "matrix.h"
-#include "adjList.h"
+#include "adjacencyList.h"
 #include "minheap.h"
 
-void dijkstra(struct Matrix* graph , int src, int pred[], int dist[])
+void Dijkstra(struct Matrix* graph , int src, int pred[], int dist[])
 {
     int size;
     int i;
@@ -64,7 +64,7 @@ void dijkstra(struct Matrix* graph , int src, int pred[], int dist[])
 	return;
 }
 
-void writePath(int parent[], int index, int *length, int row, int col, FILE* output)
+void pathWrite(int parent[], int index, int *length, int row, int col, FILE* output)
 {
     if (parent[index] == - 1)
     {
@@ -87,11 +87,11 @@ void writePath(int parent[], int index, int *length, int row, int col, FILE* out
 	fwrite(&rows, sizeof(short), 1, output);
 	fwrite(&column, sizeof(short), 1, output);
 
-    writePath(parent, parent[index], length, row, col, output);
+    pathWrite(parent, parent[index], length, row, col, output);
 	*length += 1;
 }
 
-void writeGrid(short row, short col, short *grid, FILE* output)
+void gridWrite(short row, short col, short *grid, FILE* output)
 {
     int i;
     int counter = 0;
@@ -114,36 +114,6 @@ void writeGrid(short row, short col, short *grid, FILE* output)
     }
     fprintf(output, "\n");
 }
-
-void printGrid(short row, short col, short *grid)
-{
-    int i;
-    int counter = 0;
-    printf("%d %d\n", row, col);
-
-    for (i = 0; i < row * col; i++)
-    {
-        if (counter == col)
-        {
-            printf("\n");
-            counter = 0;
-        }
-        printf("%d ", grid[i]);
-        counter += 1;
-    }
-    printf("\n");
-}
-
-void printArr(int dist[], int n)
-{
-	printf("Vertex distance from the source\n");
-    int i;
-	for (i = 0; i < n; ++i)
-    {
-        printf("%d \t\t %d\n", i, dist[i]);
-    }
-}
-
 
 int main(int argc, char* argv[])
 {
@@ -180,7 +150,7 @@ int main(int argc, char* argv[])
     {
         return EXIT_FAILURE;
     }
-    writeGrid(row, col, grid, inputText); 
+    gridWrite(row, col, grid, inputText); 
 
     int v;
     v = row * col;
@@ -217,7 +187,7 @@ int main(int argc, char* argv[])
     int *dist = (int*)malloc(v * sizeof(int*));
     int *parent = (int*)malloc(v * sizeof(int*));
 
-    dijkstra(graph, v, parent, dist);
+    Dijkstra(graph, v, parent, dist);
 
     int index;
 
@@ -257,7 +227,7 @@ int main(int argc, char* argv[])
     }
     fwrite(&dist[index], sizeof(dist[index]), 1, fastestPath);
     fwrite(&length, sizeof(length), 1, fastestPath);
-	writePath(parent, index, &length, row, col, fastestPath);
+	pathWrite(parent, index, &length, row, col, fastestPath);
 
     int d;
     for (d = 0; d < graph -> numV; d++)

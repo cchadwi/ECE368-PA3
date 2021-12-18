@@ -1,5 +1,5 @@
-#ifndef adjList
-#define adjList
+#ifndef adjacencyList
+#define aadjacencyList
 #include <stdlib.h>
 
 struct AdjList

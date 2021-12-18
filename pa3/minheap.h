@@ -1,6 +1,5 @@
 #include <stdlib.h>
 #include <limits.h>
-
 struct Path
 {
     int vertex;

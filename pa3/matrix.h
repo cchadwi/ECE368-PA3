@@ -1,6 +1,6 @@
 #ifndef matrix
 #define matrix
-#include "adjList.h"
+#include "adjacencyList.h"
 #include <stdlib.h>
 
 struct Matrix
