@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include "matrix.h"
 #include "adjacencyList.h"
-#include "minheap.h"
+#include "minHeap.h"
 
 void Dijkstra(struct Matrix* graph , int src, int pred[], int dist[])
 {
