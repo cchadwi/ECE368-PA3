@@ -8,7 +8,7 @@
 
 void dijkstra(struct Matrix* graph , int src, int pred[], int dist[])
 {
-	int size;
+    int size;
     int i;
     int vertIndex;
     int dest;
