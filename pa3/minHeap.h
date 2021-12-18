@@ -50,7 +50,7 @@ struct Path* extract(struct MinHeap* minHeap, int **pos, int length)
     (*pos)[prevNode -> vertex] = 0;
     minHeap -> size -= 1;
 
-    downHeapify(minHeap, pos, length, 0);
+    downHeapify(minHeap, 0, pos, length);
     return root;
 };
 
@@ -113,7 +113,7 @@ void downHeapify(struct MinHeap* minHeap, int index, int **pos, int length)
         (*pos)[indexNode -> vertex] = smallest;
 
         swapPath(&minHeap -> array[smallest], &minHeap -> array[index]);
-        downHeapify(minHeap, pos, length, smallest);
+        downHeapify(minHeap, smallest, pos, length);
     }
     return;
 }
@@ -137,8 +137,8 @@ void update(struct MinHeap* graph, int dist, int pos, int **posArray)
             pIndex = graph -> array[parent] -> vertex;
             cIndex = graph -> array[child] -> vertex;
 
-            (*posArray)[pIndex] = parent;
-            (*posArray)[cIndex] = child;
+            (*posArray)[pIndex] = child;
+            (*posArray)[cIndex] = parent;
 
             swapPath(&graph -> array[child], &graph -> array[parent]);
         }
