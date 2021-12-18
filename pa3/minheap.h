@@ -63,7 +63,7 @@ void swapPath(struct Path** x, struct Path** y)
     return;
 }
 
-void downHeapify(struct MinHeap* minHeap, int **pos, int length, int index)
+void downHeapify(struct MinHeap* minHeap, int index, int **pos, int length)
 {
     int smallest;
     int left;

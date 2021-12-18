@@ -9,7 +9,7 @@ struct Matrix
 	struct AdjList* list; 
 };
 
-struct Matrix* createGraph(int numV)
+struct Matrix* makeGraph(int numV)
 {
 	struct Matrix* graph = malloc(sizeof(struct Matrix));
 	graph -> numV = numV;
