@@ -4,14 +4,14 @@
 struct Path
 {
     int vertex;
-    int path;
+    int dist;
 };
 
-struct Path* newPath(int vertex, int path)
+struct Path* newPath(int vertex, int dist)
 {
     struct Path* minHeapNode = (struct Path*)malloc(sizeof(struct Path));
     minHeapNode -> vertex = vertex;
-    minHeapNode -> path = path;
+    minHeapNode -> dist = dist;
     return minHeapNode;
 };
 
@@ -76,11 +76,11 @@ void downHeapify(struct MinHeap* minHeap, int **pos, int length, int index)
     right = 2 * index + 2;
     
     int size = minHeap -> size;
-    int shortPath = minHeap -> array[smallest] -> path;
+    int shortPath = minHeap -> array[smallest] -> dist;
 
-    if(minHeap -> array[left] -> path < shortPath && left < size)
+    if(minHeap -> array[left] -> dist < shortPath && left < size)
     {
-        if(minHeap -> array[left] -> path < shortPath)
+        if(minHeap -> array[left] -> dist < shortPath)
         {
             smallest = left;
         }
@@ -91,11 +91,11 @@ void downHeapify(struct MinHeap* minHeap, int **pos, int length, int index)
     }
 
     int newIndex = smallest;
-    shortPath = minHeap -> array[smallest] -> path;
+    shortPath = minHeap -> array[smallest] -> dist;
 
     if(minHeap -> size > right)
     {
-        if(minHeap -> array[right] -> path < shortPath)
+        if(minHeap -> array[right] -> dist < shortPath)
         {
             smallest = right;
         }
@@ -119,38 +119,38 @@ void downHeapify(struct MinHeap* minHeap, int **pos, int length, int index)
     return;
 }
 
-void update(struct MinHeap* minHeap, int dest, int path, int pos, int **posArray)
+void update(struct MinHeap* graph, int dist, int pos, int **posArray)
 {
     int parent;
     int child;
     int pIndex;
     int cIndex;
     int index = pos;
-    minHeap -> array[index] -> path = path;
+    graph -> array[index] -> dist = dist;
 
     while(index > 0)
     {
         parent = (index - 1) / 2;
         child = index;
 
-        if(minHeap -> array[parent] -> path > minHeap -> array[child] -> path)
+        if(graph -> array[parent] -> dist > graph -> array[child] -> dist)
         {
-            pIndex = minHeap -> array[parent] -> vertex;
-            cIndex = minHeap -> array[child] -> vertex;
+            pIndex = graph -> array[parent] -> vertex;
+            cIndex = graph -> array[child] -> vertex;
 
             (*posArray)[pIndex] = parent;
             (*posArray)[cIndex] = child;
 
-            swapPath(&minHeap -> array[child], &minHeap -> array[parent]);
+            swapPath(&graph -> array[child], &graph -> array[parent]);
         }
         index = (index - 1) / 2;
     }
     return;
 }
 
-bool isEmpty(struct MinHeap* minHeap)
+bool isEmpty(struct MinHeap* graph)
 {
-    if(minHeap -> size != 0)
+    if(graph -> size != 0)
     {
         return false;
     }
@@ -160,9 +160,9 @@ bool isEmpty(struct MinHeap* minHeap)
     }
 }
 
-bool inQueue(struct MinHeap* minHeap, int i)
+bool inQueue(struct MinHeap* graph, int i)
 {
-    if(i < minHeap -> size)
+    if(i < graph -> size)
     {
         return true;
     }
@@ -171,4 +171,3 @@ bool inQueue(struct MinHeap* minHeap, int i)
         return false;
     }
 }
-

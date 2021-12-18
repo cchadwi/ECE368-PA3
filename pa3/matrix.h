@@ -3,31 +3,32 @@
 #include "adjList.h"
 #include <stdlib.h>
 
-struct Matrix 
+struct Matrix
 {
-    int numV;
-    struct AdjList* list;
+	int numV;
+	struct AdjList* list; 
 };
 
-struct Matrix* createGrid(int numV)
+struct Matrix* createGraph(int numV)
 {
-    struct Matrix* grid = malloc(sizeof(struct Matrix));
-    grid->numV = numV;
-    grid->list = malloc(numV * sizeof(struct AdjList));
+	struct Matrix* graph = malloc(sizeof(struct Matrix));
+	graph -> numV = numV;
+	graph -> list = malloc(numV * sizeof(struct AdjList));
+
     int i;
+	for (i = 0; i < numV; ++i) 
+	{
+		graph -> list[i].head = NULL;
+	}
 
-    for(i = 0; i < numV; i++)
-    {
-        grid -> list[i].head = NULL;
-    }
-    return grid;
+	return graph;
 };
 
-void addEdge(struct Matrix* grid, int src, int path, int weight)
+void addEdge(struct Matrix* graph, int src, int dest, int weight)
 {
-    struct AdjacencyNode* newNode = newListNode(path, weight);
-    newNode -> next = grid->list[src].head;
-    grid -> list[src].head = newNode;
+	struct AdjacencyNode* newNode = newListNode(dest, weight);
+	newNode -> next = graph -> list[src].head;
+	graph -> list[src].head = newNode;
 };
 
 #endif

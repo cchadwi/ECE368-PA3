@@ -9,17 +9,17 @@ struct AdjList
 
 struct AdjacencyNode
 {
-	int path;
+	int dest;
 	int weight;
-	struct AdjacencyNode *next;
+	struct AdjacencyNode* next;
 };
 
-struct AdjacencyNode* newListNode(int path, int weight)
+struct AdjacencyNode* newListNode(int dest, int weight)
 {
 	struct AdjacencyNode* newNode = malloc(sizeof(struct AdjacencyNode));
-	newNode -> path = path;
-	newNode -> weight = weight;
-	newNode -> next = NULL;
+	newNode->dest = dest;
+	newNode->weight = weight;
+	newNode->next = NULL;
 	return newNode;
 };
 
