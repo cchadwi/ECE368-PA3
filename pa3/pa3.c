@@ -27,6 +27,7 @@ void dijkstra(struct Matrix* graph , int src, int pred[], int dist[])
 
     dist[src] = 0;
     minHeap -> array[src] -> dist = 0;
+    pos[minHeap->array[src]->vertex] = 0;
     pos[minHeap -> array[0] -> vertex] = src;
     swapPath(&minHeap -> array[src], &minHeap -> array[0]);
 
@@ -97,7 +98,7 @@ void writeGrid(short row, short col, short *grid, FILE* output)
 
     printf(output, "%d %d\n", row, col);
 
-    for (i = 0; i < row *col; i++)
+    for (i = 0; i < row * col; i++)
     {
         if (counter % col != 0)
         {
@@ -135,7 +136,7 @@ void printGrid(short row, short col, short *grid)
 
 void printArr(int dist[], int n)
 {
-	printf("Distance from Source\n");
+	printf("Vertex distance from the source\n");
     int i;
 	for (i = 0; i < n; ++i)
     {
