@@ -93,7 +93,7 @@ void downHeapify(struct MinHeap* minHeap, int index, int **pos, int length)
     int newIndex = smallest;
     shortPath = minHeap -> array[smallest] -> dist;
 
-    if(minHeap -> size > right)
+    if(right < minHeap -> size)
     {
         if(minHeap -> array[right] -> dist < shortPath)
         {
